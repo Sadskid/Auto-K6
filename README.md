@@ -35,10 +35,6 @@ A feature-rich graphical interface for in-depth analysis and control.
 
 ---
 
-A simple and powerful tool for load testing on your websites and applications.
-
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/LTX128/Auto-K6) ![GitHub all releases](https://img.shields.io/github/downloads/LTX128/Auto-K6/total)
-
 ## 🚀 Features
 
 Available in two versions to meet all your needs:
