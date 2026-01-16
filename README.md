@@ -11,8 +11,6 @@
   <a href="https://k6.surge.sh">
     <img src="https://img.shields.io/badge/Website-Live-brightgreen" alt="Website">
   </a>
-  <img src="https://img.shields.io/github/v/release/LTX128/Auto-K6" alt="GitHub release (latest by date)">
-  <img src="https://img.shields.io/github/downloads/LTX128/Auto-K6/total" alt="GitHub all releases">
 </p>
 
 ---
