@@ -1,8 +1,3 @@
-"""
-Auto-K6 V2 - Interface Web Complète
-Backend Flask avec exécution réelle de k6
-"""
-
 # Made by LTX
 
 
@@ -702,5 +697,6 @@ if __name__ == '__main__':
         print(f"[✓] Fichier d'historique créé: {HISTORY_FILE}")
     
     app.run(debug=True, host='0.0.0.0', port=5000)
+
 
 # Made by LTX
