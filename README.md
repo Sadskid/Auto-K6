@@ -88,16 +88,13 @@ Download the version that best suits your needs directly from my website :
    # !!! Make sure you have python installed !!!
 
 ### Basic Version
-Run the `Auto-K6.py` script and follow the instructions to enter the target URL, number of virtual users (VUs), and test duration.
+Run`setup.bat` script and follow the instructions to enter the target URL, number of virtual users (VUs), and test duration.
 
 ### V2 Version
-Launch the `Auto-K6-V2.py` and use the graphical interface to configure and run your tests in just a few clicks.
+Launch `setup.bat` and use the graphical interface to configure and run your tests in just a few clicks.
 
 ### V3 Version (Web)
-1. Extract the `Auto-K6-V3.7z` archive
-2. Run the main executable file
-3. Open your browser and navigate to the local address shown
-4. Use the web interface to configure and run tests
+Launch `setup.bat` and open http://localhost:5000 and run your test.
 
 ## ⚠️ Disclaimer
 
