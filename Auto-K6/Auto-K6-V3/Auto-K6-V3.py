@@ -1,3 +1,8 @@
+"""
+Auto-K6 V2 - Complete Web Interface
+Backend Flask with real k6 execution
+"""
+
 # Made by LTX
 
 
@@ -21,6 +26,7 @@ import platform
 import shutil
 import signal
 import traceback
+import webbrowser
 
 app = Flask(__name__, static_folder='static', template_folder='templates')
 CORS(app)
@@ -35,11 +41,11 @@ class K6Manager:
         self.history_file = HISTORY_FILE
 
     def check_k6(self):
-        """Vérifier si k6 est installé"""
+        """Check if k6 is installed"""
         return shutil.which("k6") is not None
 
     def install_k6(self):
-        """Installer k6"""
+        """Install k6"""
         try:
             if "windows" in self.os_name:
                 result = subprocess.run(
@@ -71,13 +77,13 @@ class K6Manager:
             
             return False
         except Exception as e:
-            print(f"Erreur installation k6: {e}")
+            print(f"k6 installation error: {e}")
             return False
 
 k6_manager = K6Manager()
 
 def load_history():
-    """Charger l'historique depuis le fichier"""
+    """Load history from file"""
     try:
         if os.path.exists(HISTORY_FILE):
             with open(HISTORY_FILE, 'r', encoding='utf-8') as f:
@@ -87,18 +93,18 @@ def load_history():
                 return json.loads(content)
         return []
     except json.JSONDecodeError as e:
-        print(f"Erreur JSON dans l'historique: {e}")
+        print(f"JSON error in history: {e}")
         try:
             os.remove(HISTORY_FILE)
         except:
             pass
         return []
     except Exception as e:
-        print(f"Erreur chargement historique: {e}")
+        print(f"History loading error: {e}")
         return []
 
 def save_history(test_data):
-    """Sauvegarder l'historique dans le fichier"""
+    """Save history to file"""
     try:
         history = load_history()
         
@@ -110,15 +116,15 @@ def save_history(test_data):
         with open(HISTORY_FILE, 'w', encoding='utf-8') as f:
             json.dump(history, f, indent=2, ensure_ascii=False, default=str)
         
-        print(f"Historique sauvegardé ({len(history)} entrées)")
+        print(f"History saved ({len(history)} entries)")
         return True
     except Exception as e:
-        print(f"Erreur sauvegarde historique: {e}")
+        print(f"History save error: {e}")
         print(traceback.format_exc())
         return False
 
 def create_k6_script_url(method, url, vus, duration, body=None):
-    """Créer un script k6 pour URL"""
+    """Create k6 script for URL"""
     url = url.replace('"', '\\"')
     
     script = f"""import http from 'k6/http';
@@ -158,7 +164,7 @@ export default function () {{
     return script
 
 def create_k6_script_ip(method, ip, port, protocol, host_header, vus, duration, body=None):
-    """Créer un script k6 pour IP"""
+    """Create k6 script for IP"""
     url = f"{protocol}://{ip}:{port}/"
     
     script = f"""import http from 'k6/http';
@@ -210,7 +216,7 @@ export default function () {{
     return script
 
 def run_test_generic(test_id, test_type, config):
-    """Fonction générique pour exécuter un test k6"""
+    """Generic function to run k6 test"""
     try:
         if test_type == 'url':
             script = create_k6_script_url(
@@ -238,7 +244,7 @@ def run_test_generic(test_id, test_type, config):
             f.write(script)
             script_path = f.name
         
-        print(f"Script k6 créé: {script_path}")
+        print(f"k6 script created: {script_path}")
         
         start_time = time.time()
 
@@ -312,7 +318,7 @@ def run_test_generic(test_id, test_type, config):
             'vus': int(config.get('vus', 10)),
             'duration': config.get('duration', '10s'),
             'status': 'TIMEOUT',
-            'output': 'Test timeout après 5 minutes'
+            'output': 'Test timeout after 5 minutes'
         }
         save_history(record)
         active_tests[test_id] = {'status': 'completed', 'result': record}
@@ -321,7 +327,7 @@ def run_test_generic(test_id, test_type, config):
             del test_processes[test_id]
             
     except Exception as e:
-        print(f"Erreur test {test_type}: {e}")
+        print(f"Test {test_type} error: {e}")
         print(traceback.format_exc())
         if test_id in test_processes:
             del test_processes[test_id]
@@ -329,31 +335,31 @@ def run_test_generic(test_id, test_type, config):
 
 @app.route('/')
 def index():
-    """Page principale"""
+    """Main page"""
     return render_template('index.html')
 
 @app.route('/api/check_k6')
 def api_check_k6():
-    """API: Vérifier si k6 est installé"""
+    """API: Check if k6 is installed"""
     installed = k6_manager.check_k6()
     return jsonify({'installed': installed})
 
 @app.route('/api/install_k6', methods=['POST'])
 def api_install_k6():
-    """API: Installer k6"""
+    """API: Install k6"""
     try:
         success = k6_manager.install_k6()
-        return jsonify({'success': success, 'message': 'Installation terminée'})
+        return jsonify({'success': success, 'message': 'Installation completed'})
     except Exception as e:
         return jsonify({'success': False, 'error': str(e)}), 500
 
 @app.route('/api/test/url', methods=['POST'])
 def api_test_url():
-    """API: Exécuter un test sur URL"""
+    """API: Execute test on URL"""
     data = request.json
     
     if not data.get('url'):
-        return jsonify({'error': 'URL requise'}), 400
+        return jsonify({'error': 'URL required'}), 400
     
     url = data['url'].strip()
     if not re.match(r'^https?://', url):
@@ -380,14 +386,14 @@ def api_test_url():
 
 @app.route('/api/test/ip', methods=['POST'])
 def api_test_ip():
-    """API: Exécuter un test sur IP"""
+    """API: Execute test on IP"""
     data = request.json
     
     try:
         ip = data.get('ip', '').strip()
         ipaddress.ip_address(ip)
     except:
-        return jsonify({'error': 'Adresse IP invalide'}), 400
+        return jsonify({'error': 'Invalid IP address'}), 400
     
     test_id = f"ip_{int(time.time())}_{os.urandom(4).hex()}"
     
@@ -413,7 +419,7 @@ def api_test_ip():
 
 @app.route('/api/test/stop/<test_id>', methods=['POST'])
 def api_stop_test(test_id):
-    """API: Arrêter un test en cours"""
+    """API: Stop a running test"""
     try:
         if test_id in active_tests and active_tests[test_id].get('status') == 'running':
             
@@ -430,14 +436,14 @@ def api_stop_test(test_id):
                     
                     process.wait(timeout=5)
                 except Exception as e:
-                    print(f"Erreur arrêt processus: {e}")
+                    print(f"Process stop error: {e}")
                 
                 del test_processes[test_id]
             
             active_tests[test_id] = {
                 'status': 'stopped',
                 'stopped_at': datetime.now().isoformat(),
-                'message': 'Test arrêté par l\'utilisateur'
+                'message': 'Test stopped by user'
             }
             
             record = {
@@ -445,66 +451,66 @@ def api_stop_test(test_id):
                 'timestamp': datetime.now().isoformat(),
                 'type': 'MANUAL_STOP',
                 'status': 'STOPPED',
-                'output': 'Test arrêté par l\'utilisateur',
+                'output': 'Test stopped by user',
                 'stopped_manually': True
             }
             save_history(record)
             
-            return jsonify({'success': True, 'message': 'Test arrêté'})
+            return jsonify({'success': True, 'message': 'Test stopped'})
         
-        return jsonify({'success': False, 'error': 'Test non trouvé ou non en cours'}), 404
+        return jsonify({'success': False, 'error': 'Test not found or not running'}), 404
         
     except Exception as e:
-        print(f"Erreur arrêt test: {e}")
+        print(f"Test stop error: {e}")
         return jsonify({'success': False, 'error': str(e)}), 500
 
 @app.route('/api/test/status/<test_id>')
 def api_test_status(test_id):
-    """API: Obtenir le statut d'un test"""
+    """API: Get test status"""
     test_data = active_tests.get(test_id, {'status': 'not_found'})
     return jsonify(test_data)
 
 @app.route('/api/history')
 def api_history():
-    """API: Obtenir l'historique"""
+    """API: Get history"""
     try:
         history = load_history()
         return jsonify(history)
     except Exception as e:
-        print(f"Erreur chargement historique API: {e}")
+        print(f"API history loading error: {e}")
         return jsonify([])
 
 @app.route('/api/history/clear', methods=['POST'])
 def api_clear_history():
-    """API: Effacer l'historique"""
+    """API: Clear history"""
     try:
         with open(HISTORY_FILE, 'w', encoding='utf-8') as f:
             json.dump([], f)
-        return jsonify({'success': True, 'message': 'Historique effacé'})
+        return jsonify({'success': True, 'message': 'History cleared'})
     except Exception as e:
         return jsonify({'success': False, 'error': str(e)}), 500
 
 @app.route('/api/history/<test_id>')
 def api_history_test(test_id):
-    """API: Obtenir un test spécifique"""
+    """API: Get specific test"""
     try:
         history = load_history()
         for test in history:
             if test.get('id') == test_id:
                 return jsonify(test)
-        return jsonify({'error': 'Test non trouvé'}), 404
+        return jsonify({'error': 'Test not found'}), 404
     except Exception as e:
-        print(f"Erreur recherche test: {e}")
-        return jsonify({'error': 'Erreur serveur'}), 500
+        print(f"Test search error: {e}")
+        return jsonify({'error': 'Server error'}), 500
 
 @app.route('/api/check_site', methods=['POST'])
 def api_check_site():
-    """API: Vérifier un site"""
+    """API: Check a site"""
     data = request.json
     url = data.get('url', '').strip()
     
     if not url:
-        return jsonify({'error': 'URL requise'}), 400
+        return jsonify({'error': 'URL required'}), 400
     
     if not re.match(r'^https?://', url):
         url = 'https://' + url
@@ -537,12 +543,12 @@ def api_check_site():
 
 @app.route('/api/scan_website', methods=['POST'])
 def api_scan_website():
-    """API: Scanner un site web"""
+    """API: Scan a website"""
     data = request.json
     url = data.get('url', '').strip()
     
     if not url:
-        return jsonify({'error': 'URL requise'}), 400
+        return jsonify({'error': 'URL required'}), 400
     
     if not re.match(r'^https?://', url):
         url = 'https://' + url
@@ -668,7 +674,7 @@ def api_scan_website():
 
 @app.route('/api/system/info')
 def api_system_info():
-    """API: Informations système"""
+    """API: System information"""
     return jsonify({
         'platform': platform.platform(),
         'python_version': platform.python_version(),
@@ -679,24 +685,26 @@ def api_system_info():
 if __name__ == '__main__':
     print("""
     ╔══════════════════════════════════════════════════════════╗
-    ║               Auto-K6 V2 - Interface Web                 ║
-    ║               Version Complète - LTX74                   ║
+    ║               Auto-K6 V2 - Web Interface                 ║
+    ║               Complete Version - LTX74                   ║
     ║               http://localhost:5000                      ║
     ╚══════════════════════════════════════════════════════════╝
     """)
     
     if k6_manager.check_k6():
-        print("[✓] k6 est installé")
+        print("[✓] k6 is installed")
     else:
-        print("[!] k6 n'est pas installé")
-        print("[!] Utilisez l'interface pour l'installer")
+        print("[!] k6 is not installed")
+        print("[!] Use the interface to install it")
     
     if not os.path.exists(HISTORY_FILE):
         with open(HISTORY_FILE, 'w', encoding='utf-8') as f:
             json.dump([], f)
-        print(f"[✓] Fichier d'historique créé: {HISTORY_FILE}")
+        print(f"[✓] History file created: {HISTORY_FILE}")
+    
+    input("[✓] Press Enter to open http://localhost:5000")
+    webbrowser.open('http://localhost:5000')
     
     app.run(debug=True, host='0.0.0.0', port=5000)
-
 
 # Made by LTX
