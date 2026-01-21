@@ -1,10 +1,4 @@
-"""
-Auto-K6 V2 - Interface Web Complète
-Backend Flask avec exécution réelle de k6
-"""
-
 # Made by LTX
-
 
 from flask import Flask, render_template, jsonify, request
 from flask_cors import CORS
@@ -704,3 +698,4 @@ if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
 
 # Made by LTX
+
